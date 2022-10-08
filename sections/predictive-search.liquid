@@ -1,0 +1,84 @@
+<div class="tw-text-left tw-text-[#989b9e]" id="predictive-search-results">
+    <div class="tw-flex tw-flex-col-reverse lg:tw-flex-row tw-divide-x tw-gap-6">
+      <ul class="lg:tw-max-w-[200px] tw-w-full tw-list-none">
+        {%- if predictive_search.resources.collections.size > 0 -%}
+          <li class="tw-px-3 tw-text-left tw-leading-loose tw-pt-5 tw-pb-1 tw-uppercase tw-text-sm tw-font-bold" id="predictive-search-products">
+            {{ 'templates.search.collections' | t }}
+          </li>
+        {%- endif -%}
+        {%- for collection in predictive_search.resources.collections -%}
+          <li aria-selected="false" class="predictive-search__list-item" id="predictive-search-option-{{ forloop.index }}" role="option">
+            <a href="{{ collection.url }}" class="predictive-search__item tw-px-3 tw-py-1 tw-flex tw-gap-3" tabindex="-1">
+              <div class="predictive-search__item-content tw-py-1">
+                <div class="predictive-search__item-heading tw-text-sm ">{{ collection.title }}</div>
+              </div>
+            </a>
+          </li>
+        {%- endfor -%}
+        <li>
+          <div class="tw-px-3 tw-pt-5 tw-pb-1 tw-text-left tw-leading-loose tw-uppercase tw-text-sm tw-font-bold" id="predictive-search-products">
+              HOW CAN WE HELP?
+            </div>
+          <ul class="tw-flex tw-flex-wrap tw-list-none tw-gap-1 tw-pb-6">
+              
+                {%- assign link_list = settings.search_menu_links | default: linklists.header-search.links -%}
+                {%- for link in link_list -%}
+                <li aria-selected="false" class="predictive-search__list-item tw-px-3 tw-leading-snug tw-inline" role="option">
+                    <a href="{{link.url}}" class="predictive-search__item tw-inline-flex tw-leading-tight tw-border tw-gap-3 tw-px-3 tw-py-1 tw-rounded-2xl" tabindex="-1">
+                      {{link.title}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+          </ul>
+        </li>
+      </ul>
+      <div class="tw-flex-1">
+        {%- assign empty = true -%}
+        {%- if predictive_search.resources.products.size > 0 -%}
+          <div class="tw-px-3 tw-text-left tw-leading-loose tw-pt-5 tw-pb-1 tw-uppercase tw-text-sm tw-font-bold" id="predictive-search-products">
+            {{ 'templates.search.products' | t }}
+          </div>
+        {%- endif -%}
+        <ul aria-labelledby="predictive-search-products" class="tw-px-3 tw-justify-evenly tw-list-none tw-grid tw-grid-cols-2 md:tw-grid-cols-3 tw-gap-3" id="predictive-search-results-list" role="listbox">
+          {%- for product in predictive_search.resources.products -%}
+            {%- assign empty = false -%}
+            <li aria-selected="false" class="predictive-search__list-item tw-max-w-[150px]" id="predictive-search-option-{{ forloop.index }}" role="option">
+              <a href="{{ product.url }}" class="predictive-search__item tw-items-center tw-text-center tw-flex-col tw-px-3 tw-py-1 tw-flex tw-gap-3" tabindex="-1">
+                {%- if product.featured_media != blank -%}
+                  <img class="predictive-search__image tw-w-[150px] tw-object-contain tw-h-[150px] tw-flex-shrink-0 tw-object-contain" src="{{ product.featured_media | img_url: '150x' }}" alt="{{ product.featured_media.alt }}" width="50" height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"/>
+                {%- endif -%}
+                <div class="predictive-search__item-content tw-py-1">
+                  <div class="predictive-search__item-heading tw-text-sm ">{{ product.title }}</div>
+                  <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+           
+                    <div class="tw-text-sm">{% render 'product-price-listing' product:product %}</div>
+                </div>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- if predictive_search.resources.product.size== 0 -%}
+        <div class="tw-w-full tw-text-center tw-py-12 tw-px-6">
+          {{ 'templates.search.no_results' | t: terms: predictive_search.terms }}
+        </div>
+        {%- endif -%}
+        <div aria-hidden="true" class="predictive-search__loading-state tw-flex tw-justify-center tw-hidden">
+          <svg class="tw-w-5 tw-h-5 tw-mr-3 tw--ml-1 tw-animate-spin tw-mx-auto tw-text-gray-400" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke-width="4" stroke="currentColor"></circle>
+            <path class="tw-opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <a href="{{settings.search_ads_url | default: collections['express-delivery'].url}}" class="tw-block tw-w-full tw-border-t tw-border-solid tw-sticky tw-bottom-0">
+      <img class="tw-w-full" src="{{settings.search_ads_img_url}}" />
+    </a>
+  </div>
+  <span class="tw-hidden" data-predictive-search-live-region-count-value>
+    {%- if search.results_count == 0 -%}
+      {{ 'templates.search.no_results' | t: terms: predictive_search.terms }}
+    {%- else -%}
+      {{ 'templates.search.results_with_count' | t: terms: predictive_search.terms, count: predictive_search.resources.products.size }}
+    {%- endif -%}
+  </span>
+  

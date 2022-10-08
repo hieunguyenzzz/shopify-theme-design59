@@ -1,0 +1,130 @@
+
+{% paginate search.results by 24 %}
+
+    <div class="section-title desktop-12 mobile-3">
+        <h1 class="py-6">{{ 'general.search.title' | t }}</h1>
+    </div>
+
+    <div class="desktop-12 tablet-6 mobile-3" id="page">
+        <search-trigger>
+
+        <div id="search-bar">
+            <form action="{{ routes.search_url }}" method="get">
+                <input value="{{search.terms | escape}}"  type="text" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}"/>
+                <input name="type" type="hidden" value="product">
+                    <input value="{{ 'general.search.submit' | t }}" name="submit" id="search_button" class="button" type="submit">
+                {% if search.performed %}
+                    {% if search.results_count == 0 %}
+                        <p>{{ 'general.search.no_results_html' | t: terms: search.terms }}</p>
+                    {% else %}
+                        <p>{{ 'general.search.results_for_html' | t: terms: search.terms }}</p>
+                    {% endif %}
+                {% endif %}
+
+            </form>
+        </div>
+    </search-trigger>
+
+    </div>
+
+
+    {% if search.performed %}
+
+        <div class="desktop-12 tablet-6 mobile-3" id="four-per-row">
+            <div data-sectionid="{% if section.id %}{{section.id}}{% endif %}" data-settings='{% if section.settings %}{{section.settings | json}}{% endif %}' id="gf-products" class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-3 md:tw-gap-6">
+                {% for item in search.results %}
+                    {%- if item.type == 'GSC_HIDDEN_PRODUCT' -%}
+                        {%- continue -%}
+                    {%- endif -%}
+
+                    <div class="tw-col-span-1" id="prod-{{ product.id }}" data-alpha="{{ product.title }}" data-price="{{ product.price }}">
+                        <!-- Article -->
+                        {% if item.object_type == 'article' %}
+                            <div class="collection-image ci">
+                                <!--'item' is an article All article object properties can be accessed. -->
+                                {% if item.image %}
+                                    <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                                        {%- render 'basic-responsive-image', type: item.image, data_widths: '[180, 360, 540, 720]'  -%}
+                                        <noscript>
+                                            <img src="{{ item.image | img_url: '800x' }}" alt="{{ item.image.alt }}">
+                                        </noscript>
+                                    </a>
+                                {% else %}
+                                    <div class="search-content prod-image">
+                                        {{ item.content | strip_html | trancate: 200 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- PAGE -->
+                        {% elsif item.object_type == 'page' %}
+                            <div class="collection-image ci">
+                                <!--'item' is a page. All page object properties can be accessed. -->
+
+                                {% if item.content contains "img" %}
+                                    {% assign feat_image = item.content | split: 'src="' %}
+                                    {% assign feat_image = feat_image[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
+                                    <a href="{{ item.url }}" title="{{ item.title | escape }}">
+                                        <img src="{{ feat_image }}" alt="{{ item.title }}">
+                                    </a>
+                                {% else %}
+                                    <div class="search-content prod-image">
+                                        {{ item.content | strip_html | trancate: 200 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- Product -->
+                        {% else %}
+                            <!-- 'item' is a product. All product object properties can be accessed.-->
+                            {% render 'product-listing', product: item, collection: collection %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if paginate.next %}
+        <load-more-button class="tw-flex tw-justify-center tw-mx-auto tw-col-span-full">
+            <a role="button" id="load-more-{{section.id}}" href="{{ paginate.next.url }}" class="tw-px-6 tw-animate-spin">
+                <svg class=" tw-text-black tw-text-opacity-30 tw-w-7 tw-h-7" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke-width="4" stroke="currentColor"></circle>
+                    <path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+                </svg>
+            </a>
+        </load-more-button>
+        {% endif %}
+
+    {% endif %}
+
+{% endpaginate %}
+{% include 'wiser_recentview' %}{% include 'wiser_trending' %}{% include 'wiser_topselling' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}
+
+<script>
+    class LoadMoreButton extends HTMLElement {
+       constructor() {
+         super();
+           const target = this.children[0]
+           const createInteraction=(target)=>{
+               const handleIntersection = (entries, observer) => {
+                   if (!entries[0].isIntersecting) return;
+                   observer.unobserve(target);
+                   fetch(target.href+'&section_id=search-page-template-items-per-page').then(response => response.text()).then(data => {
+                        function createElementFromHTML(htmlString) {
+                            var div = document.createElement('div');
+                            div.innerHTML = htmlString.trim();
+                            return div.firstChild; 
+                        }
+                        const newsection = createElementFromHTML(data)
+                        this.classList.add('tw-hidden')
+                        const documentFragment = document.createDocumentFragment();
+                        newsection.childNodes.forEach(node => document.querySelector("#gf-products").appendChild(node.cloneNode(true)));
+                        
+                    });
+                 }
+           
+               new IntersectionObserver(handleIntersection.bind(this), {rootMargin: '0px 0px 400px 0px'}).observe(target);
+           }
+           createInteraction(target)
+       }
+       
+     }
+     customElements.define('load-more-button', LoadMoreButton);
+   </script>

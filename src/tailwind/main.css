@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/variants";
+
+svg:not(:root), symbol, image, marker, pattern, foreignObject {
+    overflow-x: visible;
+    overflow-y: visible;
+    }
+
+    .no-js .no-js-hidden{
+        display: none;
+    }
+    :root{
+        --body-family:'DIN Next LT Arabic Regular';
+        --heading-family:'DIN Next LT Arabic Bold';
+    }

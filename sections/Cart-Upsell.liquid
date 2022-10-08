@@ -1,0 +1,74 @@
+<section class="product-recommendations cart-upsell-section">
+  <div class="page-width">
+    <div class="section-row">
+      <div class="section-title">
+        <h2 class="title-text">{{ section.settings.upsell_heading | escape }}</h2>
+      </div>
+   
+    <div class="product-list">
+      <div class="list-wrap">
+           {% for item in cart.items %}
+            {% for product in item.product.metafields.global.upsells.value %}
+              {% render 'UpSell-Product-Item' , product: product %}
+            {%- endfor -%}
+          {%- endfor -%}
+      </div>
+    </div>
+     </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Cart Upsell",
+    "settings": [
+		{
+            "type": "checkbox",
+            "id": "show_Upsell",
+            "label": "Show Upsell",
+            "default": true
+        }, 
+		{
+            "type": "text",
+            "id": "upsell_heading",
+            "label": "Heading",
+            "default": "You may also like"
+        },
+		{
+            "type": "collection",
+            "id": "bestseller_collection",
+            "label": "Collection for bestsellers"
+      	},
+		{
+            "type": "range",
+            "id": "product_to_show",
+            "label": "Product to show",
+            "default": 5,
+            "min": 0,
+            "max": 5,
+            "step": 1
+        }
+	],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+		"limit": 5,
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Pick a product"
+          }
+        ]
+      }
+    ],
+   "presets":[
+      {
+       "name":"UpSell Section",
+       "category":"UpSell"
+
+	  }
+   ]
+  }
+{% endschema %}

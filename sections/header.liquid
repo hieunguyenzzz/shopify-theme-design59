@@ -1,0 +1,477 @@
+{%- assign hd_locale_selector = false -%}
+{%- assign hd_currency_selector = false -%}
+
+{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 -%}
+  {%- assign hd_currency_selector = true -%}
+{%- endif -%}
+
+{%- if section.settings.show_locale_selector and shop.published_locales.size > 1 -%}
+  {%- assign hd_locale_selector = true -%}
+{%- endif -%}
+
+<header class="header-section tw-border-y lg:tw-border-none tw-border-solid tw-border-t-white tw-z-30 lg:tw-pb-0 tw-relative" data-section-id="{{ section.id }}" data-section-type="header-section" data-sticky="{{ section.settings.enable_sticky_header }}">
+  {% if section.settings.show_announcement %}
+    <div class="topbar">
+      <div class="{% render '[class]-container' class: '' %} tw-flex tw-justify-center tw-items-center tw-truncate tw-text-xs tw-font-bold tw-uppercase">
+        {% if section.settings.top_nav != blank %}
+          <ul class="tw-flex-1 tw-hidden lg:tw-block tw-list-none">
+            <li>
+              <b>
+                <span>★ ★ ★ ★ ☆</span>
+                {{ section.settings.announcement_bar_verified_reviews_number }}
+                {{ 'strings.general.verified-reviews' | t }}</b>
+            </li>
+          </ul>
+        {% endif %}
+        <div class="tw-text-center">
+          {% if section.settings.show_announcement and section.settings.announcement_text != blank %}
+            {{ section.settings.announcement_text }}
+          {% endif %}
+        </div>
+        <div class="tw-flex-1 tw-hidden lg:tw-block tw-text-right">
+          {% if section.settings.show_announcement and section.settings.announcement_text1 != blank %}
+            {{ section.settings.announcement_text1 }}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <div  {% if section.settings.full_width_header %} class="gridlock-fluid" {% endif %}>
+    <div class="{%- render '[class]-container' class: '' -%} tw-h-[60px] lg:tw-h-[74px] tw-flex tw-items-center ">
+      <div class="tw-flex tw-w-full tw-gap-6 tw-justify-center"><!-- start nav container -->
+        <div class="tw-z-10 tw-bg-white tw-transition-all focus-within:tw-shadow lg:focus-within:tw-shadow-none lg:tw-pointer-events-auto lg:tw-opacity-100 focus-within:tw-pointer-events-auto focus-within:tw-opacity-100 tw-opacity-0 tw-pointer-events-none peer-checked:tw-pointer-events-auto peer-checked:tw-opacity-100 peer-checked:tw-flex tw-px-4 sm:tw-px-8 tw-py-2 lg:tw-pb-0 lg:tw-px-0 tw-flex tw-flex-1 tw-absolute tw-left-0 tw-w-full tw-top-full tw-items-center lg:tw-relative">
+          <predictive-search class="tw-block tw-group tw-relative tw-w-full">
+            <form class="tw-flex tw-relative lg:tw-max-w-[300px] tw-w-full tw-border-b tw-items-center tw-gap-3 tw-pl-2 tw-pr-4" action="{{ routes.search_url }}" method="get">
+              <input name="type" type="hidden" value="product">
+              <i aria-hidden="true" class=" icon tw-text-gray-400 icon-search tw-h-[32px] !tw-flex tw-items-center"></i>
+              <input class="tw-flex-1  tw-text-gray-400 focus:tw-text-black focus:tw-outline-none !tw-indent-0 !tw-m-0 !tw-h-[34px] !tw-leading-[34px] lg:tw-text-sm" type="search" name="q" id="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}" role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list" aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false"/>
+              <div class="tw-flex tw-hidden tw-bg-white tw-max-w-[100px] tw-absolute tw-top-3 tw-bottom-3 tw-w-[100px] tw-right-6 ">
+                <input value="{{ 'general.search.submit' | t }}" name="submit" id="search_button" class="!tw-hidden button !tw-h-[30px] !tw-leading-[30px]" type="submit">
+              </div>
+              <div class="predictive-search predictive-search--header tw-absolute tw-top-full tw-left-0 tw-w-full tw-bg-white tw-shadow " tabindex="-1">
+                <div class="lg:tw-mx-auto tw-w-[800px] tw-bg-white tw-shadow-xl tw-max-h-[calc(100vh-101px)] lg:tw-max-h-[calc(100vh-75px)] tw-overflow-auto tw-pointer-events-auto" data-predictive-search></div>
+                <div class="lg:tw-mx-auto  focus-withintw-flex tw-bg-white tw-shadow-xl tw-max-h-[calc(100vh-101px)] lg:tw-max-h-[calc(100vh-75px)] tw-overflow-auto tw-pointer-events-auto" data-holder tabindex="-1">
+                  <div class="tw-w-full">
+                    <ul class="tw-list-none tw-w-full">
+                      <li class="tw-px-3 tw-text-left tw-leading-loose tw-pt-5 tw-pb-1 tw-uppercase tw-font-bold tw-font-heading" tabindex="-1">
+                        {{ 'templates.search.popular_searches' | t }}
+                      </li>
+                      {%- capture popular_searches -%}
+                        {%- if settings.header_search_popular -%}
+                          {{settings.header_search_popular}}
+                        {%- else -%}
+                        Togo,Wishbone,Eero Saarinen Tulip Chairs,Eero Saarinen Tulip Tabels,Eero Saarinen Tulip Tables
+                        {%- endif -%}
+                      {%- endcapture -%}
+                      {%- assign popular_searches_list = popular_searches | split: ',' -%}
+                      {%- for searchStr in popular_searches_list -%}
+                        {%- assign trim_searchStr = searchStr | strip -%}
+                        <li aria-selected="false" class="predictive-search__list-item" id="predictive-search-option-{{ forloop.index }}" role="option">
+                          <a href="{{ request.origin }}/search?q={{trim_searchStr}}" class="predictive-search__item tw-px-3 tw-py-1 tw-flex tw-gap-3" tabindex="-1">
+                            <div class="predictive-search__item-content tw-py-1">
+                              <div class="predictive-search__item-heading tw-text-sm ">{{ trim_searchStr }}</div>
+                            </div>
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                      
+                    </ul>
+                    <div class="tw-px-3 tw-border-t tw-mt-6 tw-text-left tw-leading-loose tw-pt-5 tw-pb-1 tw-uppercase tw-text-sm tw-font-bold" tabindex="-1">
+                      {{ 'templates.search.recents' | t }}
+                    </div>
+                    <ul id="search_recents" class="tw-list-none tw-pb-12 tw-w-full">
+                      {%- capture recent_searches -%}
+                        {%- if settings.header_search_recents -%}
+                          {{settings.header_search_recents}}
+                        {%- else -%}
+                          Fg,Upholstered Velvet,Ph Wall,Wishbone,2212
+                        {%- endif -%}
+                      {%- endcapture -%}
+                      {%- assign recent_searches_list = recent_searches | split: ',' -%}
+                      {%- for searchStr in recent_searches_list -%}
+                        {%- assign trim_searchStr = searchStr | strip -%}
+                        <li aria-selected="false" class="predictive-search__list-item" id="predictive-search-option-{{ forloop.index }}" role="option">
+                          <a href="{{ request.origin }}/search?q={{trim_searchStr}}" class="predictive-search__item tw-px-3 tw-py-1 tw-flex tw-gap-3" tabindex="-1">
+                            <div class="predictive-search__item-content tw-py-1">
+                              <div class="predictive-search__item-heading tw-text-sm ">{{ trim_searchStr }}</div>
+                            </div>
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                    <script>
+                      var search_terms = '{{ search.terms }}';
+                        var search_results_count = '{{ search.results_count }}';
+                        var search_terms_local = []
+                        try {
+                                search_terms_local = JSON.parse(localStorage.getItem('search_terms') || '[]');
+                            } catch (error) {
+                                    console.log(error);
+                                search_terms_local = [];
+                            }
+                        if(search_results_count!='0'&&search_terms&&search_terms.length){
+                           
+                            if(!search_terms_local.includes(search_terms)){
+                              search_terms_local=[search_terms,...search_terms_local].filter((item,i)=>i<6)
+                                localStorage.setItem('search_terms', JSON.stringify(search_terms_local));
+                            }
+                        }
+                          if(search_terms_local.length){
+                            var recentnode = document.getElementById('search_recents');
+                            recentnode.innerHTML = '';
+                            search_terms_local.forEach((s)=>{
+                              var li = document.createElement('li');
+                              li.className = 'predictive-search__list-item';
+                              li.id = 'predictive-search-option-'+recentnode.childNodes.length;
+                              li.setAttribute('aria-selected', 'false');
+                              li.setAttribute('role', 'option');
+                              var a = document.createElement('a');
+                              a.className = 'predictive-search__item tw-px-3 tw-py-1 tw-flex tw-gap-3';
+								a.href = '{{ request.origin }}/search?q='+s;
+                              a.setAttribute('tabindex', '-1');
+                              a.setAttribute('tabindex', '-1');
+                              var div = document.createElement('div');
+                              div.className = 'predictive-search__item-content tw-py-1';
+                              var heading = document.createElement('div');
+                              heading.className = 'predictive-search__item-heading tw-text-sm ';
+                              heading.innerHTML = s;
+                              div.appendChild(heading);
+                              a.appendChild(div);
+                              li.appendChild(a);
+                              recentnode.appendChild(li);
+                            });
+                          }
+                    </script>
+                  </div>
+                </div>
+              </div>
+              <span aria-hidden="true" class="predictive-search-status visually-hidden" role="status"></span>
+            </form>
+          </predictive-search>
+        </div>
+        {% render 'logo' %}
+        <ul class="tw-flex-1 tw-justify-end tw-hidden lg:tw-block " id="cart">
+          {% render 'shopping-cart-links', cart: cart, hd_locale_selector: hd_locale_selector, hd_currency_selector: hd_currency_selector %}
+          <div class="tw-h-full tw-inline-flex tw-align-middle tw-items-center">
+            {% render '[location]-dropdown'  class: '' %}
+          </div>
+        </ul>
+        <div class="tw-flex-1 lg:tw-hidden tw-flex tw-justify-end ">
+          {% render 'mobile-cart', cart: cart %}
+        </div>
+
+      </div><!-- end nav container -->
+    </div>
+  </div>
+  <div class="tw-w-full tw-hidden lg:tw-flex tw-justify-center tw-pointer-events-none tw-bg-white">
+    <div class=" tw-w-full tw-border-y">
+      <nav aria-label="Primary Navigation" class="{%- render '[class]-container' -%}tw-px-4 sm:tw-px-8 tw-pointer-events-auto">
+        <ul class="navigation__menu tw-gap-x-[2%] tw-justify-between !tw-max-w-none tw-min-h-[60px] tw-items-center tw-flex-wrap tw-bg-white tw-flex tw-mx-auto" id="main-nav" role="menubar">
+          {% for block in section.blocks %}
+            {% if block.settings.menu_items != blank or block.type == 'linkonly' %}
+              {% render '[navigation]-with-images', link: link  component: block link: block.settings.url heading: block.settings.menu_heading menu_items: block.settings.menu_items %}
+            {% else %}
+              {% render '[navigation-main-menu]-with-images', link: link  component: block link: block.settings.url heading: block.settings.menu_heading menu_items:block.settings.menu_item %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+      </nav>
+    </div>
+  </div>
+  <div class="tw-drawer tw-pointer-events-none lg:tw-hidden tw-absolute tw-inset-0 tw-top-[100px] tw-w-screen  tw-h-[calc(100vh-103px)]">
+    <input class="tw-drawer-toggle" id="openMenuMobile" type="checkbox">
+    <div class="tw-drawer-side ">
+      <label class="tw-drawer-overlay" for="openMenuMobile"></label>
+      <div class="tw-w-full tw-pointer-events-auto tw-absolute tw-border-t tw-inset-0 tw-flex tw-bg-white tw-overflow-auto tw-pb-[100px] tw-h-full tw-justify-center tw-isolate ">
+        <ul class="tw-list-none tw-divide-y tw-w-full">
+          {% for link in linklists.main-menu.links %}
+            <li class="{% render '[class]-container' %}">
+              {% assign hadChildren = false %}
+              {% assign items = link.links %}
+              {% if items.links.size > 0 %}
+                {% assign hadChildren = true %}
+              {% endif %}
+              {%- unless hadChildren -%}
+                <div class=" tw-collapse-title tw-leading-[28px] group-focus:tw-bg-transparent">
+                  <a class="tw-uppercase " href="{{ link.url }}">{{ link.title }}</a>
+                </div>
+              {% else %}
+                <div class=" tw-collapse tw-pointer-events-none tw-group tw-collapse-arrow" tabindex="0">
+                  <div class=" tw-collapse-title tw-leading-[28px] tw-pointer-events-auto group-focus:!tw-bg-transparent group-focus:!tw-pointer-events-none">
+                    <a class="tw-uppercase" class="tw-pointer-events-auto" href="{{ link.url }}">{{ link.title }}</a>
+                  </div>
+                  <div class="tw-collapse-content tw-pointer-events-auto group-focus:!tw-bg-transparent tw-shadow-inner">
+                    <ul class="tw-menu tw-menu-compact tw-w-full tw-divide-y tw-divide-opacity-50">
+                      {% for item in items %}
+                        <li>
+                          <a class="tw-leading-none" href="{{item.url}}">{{ item.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              {%- endunless -%}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="phantom js-phantom tw-hidden {% if section.settings.header_cover and template == 'index' %}ignore-this{% endif %}" id="phantom"></div>
+
+{% schema %}
+
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width_header",
+      "label": "Full width header"
+    }, {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    }, {
+      "type": "checkbox",
+      "id": "header_cover",
+      "label": "Float header over slideshow"
+    }, {
+      "type": "checkbox",
+      "id": "header_border",
+      "label": "Add bottom border"
+    }, {
+      "type": "header",
+      "content": "Announcement Bar"
+    }, {
+      "type": "text",
+      "id": "announcement_bar_verified_reviews_number",
+      "label": "Verified reviews number",
+      "default": "100'S"
+    }, {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    }, {
+      "type": "richtext",
+      "id": "announcement_text",
+      "label": "Text",
+      "default": "<p>Share a shop announcement or message</p>"
+    }, {
+      "type": "richtext",
+      "id": "announcement_text1",
+      "label": "Text right",
+      "default": "<p>Share a shop announcement or message</p>"
+    }, {
+      "type": "range",
+      "id": "announcement_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 13
+    }, {
+      "type": "link_list",
+      "id": "top_nav",
+      "label": "Add additional links with a menu"
+    }, {
+      "type": "header",
+      "content": "Cart Icon"
+    }, {
+      "type": "select",
+      "id": "cart_position",
+      "label": "Cart icon position",
+      "options": [
+        {
+          "value": "announcement-bar",
+          "label": "Announcement Bar"
+        }, {
+          "value": "header",
+          "label": "Header"
+        }
+      ]
+    }, {
+      "type": "header",
+      "content": "Language Selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    }, {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": false
+    }, {
+      "type": "header",
+      "content": "Currency Selector",
+      "info": "To add a currency, go to your [payment settings.](/admin/settings/payments)"
+    }, {
+      "type": "checkbox",
+      "id": "show_currency_selector",
+      "label": "Show currency selector",
+      "default": false
+    }, {
+      "type": "header",
+      "content": "Header Logo"
+    }, {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image",
+      "info": "250px x 80px recommended"
+    }, {
+      "type": "image_picker",
+      "id": "logo_alt",
+      "label": "Alternative logo image",
+      "info": "You can switch to an alternative logo when scrolling."
+    }, {
+      "id": "logoname",
+      "type": "text",
+      "label": "Logo Text"
+    }, {
+      "type": "range",
+      "id": "logosize",
+      "min": 10,
+      "max": 65,
+      "step": 1,
+      "unit": "px",
+      "label": "Logo Size text",
+      "default": 20
+    }, {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 100,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Custom logo width",
+      "default": 200
+    }, {
+      "type": "select",
+      "id": "logo_position",
+      "label": "Logo position",
+      "options": [
+        {
+          "value": "above",
+          "label": "Above navigation"
+        }, {
+          "value": "inline",
+          "label": "Inline with navigation"
+        }
+      ]
+    }, {
+      "type": "select",
+      "id": "logo_align",
+      "label": "Logo alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        }, {
+          "value": "center",
+          "label": "Center"
+        }
+      ]
+    }, {
+      "type": "header",
+      "content": "Navigation"
+    }, {
+      "type": "link_list",
+      "id": "main_nav",
+      "label": "Choose navigation menu",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "linkonly",
+      "name": "Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_heading",
+          "label": "Heading"
+        }, {
+          "type": "url",
+          "id": "url",
+          "label": "Url",
+          "default": "/"
+        }
+      ]
+    }, {
+      "type": "submenu_with_image",
+      "name": "Submenu with image",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_heading",
+          "label": "Heading"
+        }, {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to add image to submenu (case-sensitive)"
+        }, {
+          "type": "text",
+          "id": "menu_items",
+          "label": "Menu items"
+        },{
+          "type": "image_picker",
+          "id": "nav_image",
+          "label": "Image"
+        },{
+          "type": "url",
+          "id": "promo_url",
+          "label": "Url",
+          "default": "/"
+        }, {
+          "type": "image_picker",
+          "id": "nav_image_secound",
+          "label": "Image"
+        },{
+          "type": "url",
+          "id": "promo_url_secound",
+          "label": "Url",
+          "default": "/"
+        }, {
+          "type": "select",
+          "id": "nav_image_position",
+          "label": "Image position",
+          "default": "right",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            }, {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        }, {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text",
+          "default": "Click here"
+        }, {
+          "type": "url",
+          "id": "url",
+          "label": "Url",
+          "default": "/"
+        }, {
+          "type": "range",
+          "id": "columns_number",
+          "label": "Columns number",
+          "unit": "col",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 3
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}
