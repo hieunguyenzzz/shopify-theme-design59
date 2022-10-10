@@ -167,7 +167,6 @@
               "menu_heading": "CHAIRS",
               "menu_item": "chairs",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-Chairs_1.webp",
               "promo_url": "shopify:\/\/collections\/chairs",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -182,7 +181,6 @@
               "menu_heading": "TABLES",
               "menu_item": "tables",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-tables_1.webp",
               "promo_url": "shopify:\/\/collections\/tables",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -197,7 +195,6 @@
               "menu_heading": "SOFA",
               "menu_item": "sofa",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/Most-Searched-Sofa5.webp",
               "promo_url": "shopify:\/\/collections\/sofas",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -212,7 +209,6 @@
               "menu_heading": "LIGHTING",
               "menu_item": "lighting",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/Most-Searched-lighting.webp",
               "promo_url": "shopify:\/\/collections\/lighting",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -227,7 +223,6 @@
               "menu_heading": "STORAGE",
               "menu_item": "storage",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-Storage_1.webp",
               "promo_url": "shopify:\/\/collections\/storage",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -242,9 +237,7 @@
               "menu_heading": "ACCESSORIES",
               "menu_item": "accessories",
               "menu_items": "",
-              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-Clocks_1.webp",
               "promo_url": "shopify:\/\/collections\/accessories",
-              "nav_image_secound": "shopify:\/\/shop_images\/DROPDOWN-Banners-Accessories_1.webp",
               "promo_url_secound": "shopify:\/\/collections\/accessories",
               "nav_image_position": "right",
               "link_text": "Click here",
@@ -299,8 +292,7 @@
           "cart_position": "header",
           "show_locale_selector": false,
           "show_currency_selector": false,
-          "logo": "shopify:\/\/shop_images\/DI-Logo-Transparent-2.png",
-          "logoname": "",
+          "logoname": "DESIGN 59",
           "logosize": 20,
           "logo_max_width": 155,
           "logo_position": "inline",
@@ -342,7 +334,6 @@
           "a07aa2ee-9834-47c9-8e0d-161669592c59"
         ],
         "settings": {
-          "logo": "shopify:\/\/shop_images\/DI-Logo-Transparent.png",
           "description": "Hand Made Designer Furniture from around the world come together at Designericons, bringing you a vast range of designer furniture, lighting and accessories at a fraction of the high street price.",
           "footer_text_align": "left",
           "show_credit_cards": true,
@@ -1115,7 +1106,7 @@
           "dd1658c2-dd54-4686-912e-1a30f8a1de2d": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/EU-2.webp",
+              "image": "shopify:\/\/shop_images\/EU-2_1.webp",
               "image_width": "33%",
               "overlay_opacity": 0,
               "heading": "<p>No Extra Taxes \/ Duty<\/p><p>Guaranteed <\/p>",
@@ -1349,7 +1340,6 @@
           "162159895992baa653-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Most-Searched-Dining-chairs.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/dining-chairs",
               "heading": "Classic Dining -",
@@ -1361,7 +1351,6 @@
           "162159895992baa653-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Most-Searched-lighting_5dded861-3973-417e-af3e-3c66f9205612.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/lighting",
               "heading": "Mid-Century Lighting -",
@@ -1937,7 +1926,6 @@
           "1650785388ef09e39f-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Most-Searched-Storage-01_17ff6bb3-872f-44b9-a162-0be1a81e2d26.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/storage",
               "heading": "Unique Storage -",
@@ -1949,7 +1937,6 @@
           "1650785388ef09e39f-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Most-Searched-Sofa5.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/sofas",
               "heading": "70's Vintage, Mid-Century -",
@@ -1990,7 +1977,6 @@
           "16507862046b175cc3-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/DROPDOWN-Banners-tables.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/modern-coffee-table",
               "heading": "Classic Coffee Tables -",
@@ -2002,7 +1988,6 @@
           "16507862046b175cc3-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/DROPDOWN-Banners-Chairs.webp",
               "image_width": "33%",
               "link": "shopify:\/\/collections\/lounge-chair",
               "heading": "Lounge Lovers -",
@@ -2168,14 +2153,6 @@
       "1635413768a1194b60",
       "1650784908733d1159",
       "161890494913acaf20"
-    ],
-    "blocks": {
-      "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
-        "settings": {
-        }
-      }
-    }
+    ]
   }
 }
