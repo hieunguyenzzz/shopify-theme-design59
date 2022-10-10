@@ -2135,20 +2135,21 @@
         "settings": {
         }
       },
-      "166363888987e54557": {
-        "type": "rev_design-within-reach",
+      "rev_great-ideas": {
+        "type": "rev_great-ideas",
+        "disabled": true,
         "settings": {
         }
       },
-      "rev_great-ideas": {
+      "b1f53343-f02b-4e5f-8933-a3b97eb2969c": {
         "type": "rev_great-ideas",
         "settings": {
         }
       }
     },
     "content_for_index": [
+      "b1f53343-f02b-4e5f-8933-a3b97eb2969c",
       "rev_great-ideas",
-      "166363888987e54557",
       "product-three-section",
       "162159895992baa653",
       "16188954225e385108",
