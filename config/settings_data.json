@@ -167,6 +167,7 @@
               "menu_heading": "CHAIRS",
               "menu_item": "chairs",
               "menu_items": "",
+              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-Chairs.webp",
               "promo_url": "shopify:\/\/collections\/chairs",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -181,6 +182,7 @@
               "menu_heading": "TABLES",
               "menu_item": "tables",
               "menu_items": "",
+              "nav_image": "shopify:\/\/shop_images\/DROPDOWN-Banners-tables.webp",
               "promo_url": "shopify:\/\/collections\/tables",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
@@ -192,9 +194,10 @@
           "63d14d0c-cf9d-4a04-917b-b88fb939fdf2": {
             "type": "submenu_with_image",
             "settings": {
-              "menu_heading": "SOFA",
+              "menu_heading": "SOFAS",
               "menu_item": "sofa",
               "menu_items": "",
+              "nav_image": "shopify:\/\/shop_images\/Most-Searched-Sofa5.webp",
               "promo_url": "shopify:\/\/collections\/sofas",
               "promo_url_secound": "\/",
               "nav_image_position": "right",
