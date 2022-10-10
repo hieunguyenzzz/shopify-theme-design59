@@ -2137,7 +2137,6 @@
       },
       "rev_great-ideas": {
         "type": "rev_great-ideas",
-        "disabled": true,
         "settings": {
         }
       },
@@ -2149,7 +2148,6 @@
     },
     "content_for_index": [
       "b1f53343-f02b-4e5f-8933-a3b97eb2969c",
-      "rev_great-ideas",
       "product-three-section",
       "162159895992baa653",
       "16188954225e385108",
