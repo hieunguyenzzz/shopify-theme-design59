@@ -11,10 +11,10 @@
     "name": "Contact",
     "settings": [
       {
-        "type": "text",
+        "type": "richtext",
         "id": "contact_address",
         "label": "Address",
-        "default": "71 – 75 Shelton Street, London, WC2H9JQ"
+        "default": "<p>1st Floor, 10 Penn Rd, Beaconsfield, Berkshire, HP9 2LH<\/p>"
       },
       {
         "type": "text",
