@@ -19,13 +19,13 @@
       {
         "type": "text",
         "id": "contact_phone",
-        "label": "Address",
+        "label": "Phone",
         "default": "020 3290 7690"
       },
       {
         "type": "text",
         "id": "contact_email",
-        "label": "Address",
+        "label": "Email",
         "default": "customersupport@designereditions.com"
       }
     ]
