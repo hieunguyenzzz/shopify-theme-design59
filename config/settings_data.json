@@ -1448,6 +1448,7 @@
           "caf7f4f2-2e89-4ada-a4e3-7b5dd5f87b20": {
             "type": "image_text_overlay",
             "settings": {
+              "pio_image": "shopify:\/\/shop_images\/wishbone_walnut_-_vertigo_black_-_tulip_round_walnut_01_1.png",
               "overlay_opacity": 0,
               "pio_background_effect": "none",
               "pio_page_height": 600,
