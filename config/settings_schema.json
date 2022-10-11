@@ -11,7 +11,7 @@
     "name": "Contact",
     "settings": [
       {
-        "type": "text",
+        "type": "textarea",
         "id": "contact_address",
         "label": "Address",
         "default": "<p>1st Floor, 10 Penn Rd, Beaconsfield, Berkshire, HP9 2LH<\/p>"
