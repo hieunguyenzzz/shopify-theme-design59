@@ -1448,7 +1448,6 @@
           "caf7f4f2-2e89-4ada-a4e3-7b5dd5f87b20": {
             "type": "image_text_overlay",
             "settings": {
-              "pio_image": "shopify:\/\/shop_images\/Wishboine-Chair-Special-Ed.webp",
               "overlay_opacity": 0,
               "pio_background_effect": "none",
               "pio_page_height": 600,
@@ -1503,7 +1502,6 @@
           "967f4583-d505-484d-8c74-f335dc264609": {
             "type": "image_with_text",
             "settings": {
-              "iwt_image": "shopify:\/\/shop_images\/About-Us-2_720x_61a15f83-eae7-42e5-b613-cf9bba70ca4a.webp",
               "iwt_layout": "left",
               "iwt_image_width": "50%",
               "iwt_text_align": "left",
@@ -1519,7 +1517,6 @@
           "bf6b5b77-492b-414a-a10d-440e8adcee41": {
             "type": "image_with_text",
             "settings": {
-              "iwt_image": "shopify:\/\/shop_images\/About-Us-3_720x_720x_a6563166-8686-4390-81ce-ab144edf669c.webp",
               "iwt_layout": "right",
               "iwt_image_width": "50%",
               "iwt_text_align": "left",
@@ -1535,7 +1532,6 @@
           "893e10cb-38fd-42cd-a0ee-81e2709b7f27": {
             "type": "image_with_text",
             "settings": {
-              "iwt_image": "shopify:\/\/shop_images\/Screenshot_2018-02-28_18.10.33_720x_720x_520b078f-3a25-4091-935a-1a1c56c47e57.webp",
               "iwt_layout": "left",
               "iwt_image_width": "50%",
               "iwt_text_align": "left",
@@ -1551,7 +1547,6 @@
           "d59d48a5-6aa6-43be-8b8c-04645615e7ce": {
             "type": "image_with_text",
             "settings": {
-              "iwt_image": "shopify:\/\/shop_images\/shutterstock_382064047_720x_720x_94af2b93-20f9-48c9-892d-11c3f3a798eb.webp",
               "iwt_layout": "right",
               "iwt_image_width": "50%",
               "iwt_text_align": "left",
@@ -1567,7 +1562,6 @@
           "a46c7cc9-f8e5-4b9a-85fe-880217e9fbc8": {
             "type": "image_with_text",
             "settings": {
-              "iwt_image": "shopify:\/\/shop_images\/shutterstock_2007161351_720x_720x_cbe4f27e-e752-497a-b827-f6d79ec1bc57.webp",
               "iwt_layout": "left",
               "iwt_image_width": "50%",
               "iwt_text_align": "left",
