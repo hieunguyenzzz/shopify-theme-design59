@@ -25,8 +25,7 @@
       {
         "type": "text",
         "id": "contact_email",
-        "label": "Email",
-        "default": "customersupport@designereditions.com"
+        "label": "Email"
       }
     ]
   },
