@@ -333,12 +333,21 @@
               "menu_item": "account",
               "menu_items": ""
             }
+          },
+          "7c787ad1-673b-493f-93d4-49db5fa4334f": {
+            "type": "submenu",
+            "settings": {
+              "menu_heading": "policy",
+              "menu_item": "policy",
+              "menu_items": ""
+            }
           }
         },
         "block_order": [
           "dcf2a170-e61b-4601-a7aa-8bdb4e8f88a0",
           "6f8a40f1-3e70-49e7-b116-defd54c3d72e",
-          "a07aa2ee-9834-47c9-8e0d-161669592c59"
+          "a07aa2ee-9834-47c9-8e0d-161669592c59",
+          "7c787ad1-673b-493f-93d4-49db5fa4334f"
         ],
         "settings": {
           "description": "Hand Made Designer Furniture from around the world come together at Designericons, bringing you a vast range of designer furniture, lighting and accessories at a fraction of the high street price.",
