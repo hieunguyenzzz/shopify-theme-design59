@@ -31,7 +31,7 @@
 								data-text="s:40;l:40;a:inherit;"
 								data-frame_0="y:50;"
 								data-frame_1="st:11000;sp:500;"
-								data-frame_999="sX:0.7;sY:0.7;o:0;e:back.in;st:w;sp:500;"
+								data-frame_999="sX:0.7;sY:0.7;o:0;e:back.in;st:34500;sp:500;"
 								style="z-index:8;font-family:'Open Sans';text-transform:uppercase;"
 							>Up to 
 							</rs-layer><!--
@@ -45,7 +45,7 @@
 								data-text="s:40;l:40;a:center;"
 								data-frame_0="y:-50;"
 								data-frame_1="st:11000;sp:500;"
-								data-frame_999="sX:0.7;sY:0.7;o:0;e:back.in;st:w;sp:500;"
+								data-frame_999="sX:0.7;sY:0.7;o:0;e:back.in;st:34500;sp:500;"
 								style="z-index:10;font-family:'Open Sans';"
 							>1000s of Selected Lines 
 							</rs-layer><!--
@@ -116,6 +116,59 @@
 						allowHTML5AutoPlayOnAndroid:true
 					},
 			});
+							var api = revapi2;
+ 
+/* no need to edit below */
+var touch = 'ontouchend' in document;
+ 
+jQuery('.rev_slider').find('iframe').each(function() {
+ 
+    var $this = jQuery(this),
+        src = $this.attr('src');
+ 
+    if(src.search('wistia') !== -1) {
+ 
+        $this = $this.closest('.tp-caption');
+        $this.data('wistia-layer', $this.html()).empty().addClass('is-wistia');
+ 
+    }
+ 
+});
+ 
+api.on('revolution.slide.onafterswap', function (e, data) {
+ 
+    data.currentslide.find('.is-wistia').each(onLayers);
+ 
+}).on('revolution.slide.onbeforeswap', function(e, data) {
+ 
+    var $this = data.currentslide.find('.is-wistia').empty().removeClass('wistia-ready');
+    clearTimeout($this.data('wistia-timer'));    
+ 
+});
+ 
+function onLayers() {
+ 
+    var $this = jQuery(this),
+        frame = jQuery($this.data('wistia-layer'));
+ 
+    if(!touch) {
+        frame.one('load', onLoaded).appendTo($this);
+    }
+    else {
+        frame.appendTo($this);
+        onLoaded.call(frame[0]);
+    }  
+ 
+}
+ 
+function onLoaded() {
+ 
+    api.revredraw();
+ 
+    var $this = jQuery(this).closest('.is-wistia');
+    $this.data('wistia-timer', setTimeout(function() {$this.addClass('wistia-ready');}, 500));
+ 
+} 
 			
 		}} 
 
