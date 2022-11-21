@@ -11,23 +11,6 @@
 							></rs-bgvideo>
 <!--
 							--><rs-layer
-								id="slider-2-slide-2-layer-6" 
-								class="intrinsic-ignore"
-								data-type="text"
-								data-color="#ffffff"
-								data-rsp_ch="on"
-								data-xy="x:c;y:c;"
-								data-text="w:normal;a:center;"
-								data-dim="w:100%;h:100%;"
-								data-vbility="f,f,f,f"
-								data-basealign="slide"
-								data-frame_999="o:0;st:w;"
-								style="z-index:7;font-family:'Roboto';"
-							><iframe src="https://fast.wistia.net/embed/iframe/7w5cn382g5?videoFoam=true" title="Black Friday" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="1920" height="720"></iframe><br />
- 
-							</rs-layer><!--
-
-							--><rs-layer
 								id="slider-2-slide-2-layer-25" 
 								data-type="text"
 								data-color="rgba(255,255,255,1)"
@@ -55,30 +38,13 @@
 							>1000s of Selected Lines 
 							</rs-layer><!--
 -->						</rs-slide>
-						<rs-slide style="position: absolute;" data-key="rs-3" data-title="Slide 1" data-anim="ms:0ms;" data-in="o:0;e:none;" data-out="e:none;">
+						<rs-slide style="position: absolute;" data-key="rs-3" data-title="Slide 2" data-anim="ms:0ms;" data-in="o:0;e:none;" data-out="e:none;">
 							<img src="{{asset_url_rev}}dummy.png" alt="Alt" title="Image Title" data-lazyload="{{asset_url_rev}}transparent.png" class="rev-slidebg tp-rs-img rs-lazyload" data-no-retina>
 							<rs-bgvideo 
 								data-video="w:100%;h:100%;nse:false;l:true;ptimer:false;vfc:true;"
 								data-mp4="//cdn.shopify.com/s/files/1/0603/6707/7513/t/5/assets/fm_Black-Friday-2022.mp4?v=1669068930"
 							></rs-bgvideo>
 <!--
-							--><rs-layer
-								id="slider-2-slide-3-layer-6" 
-								class="intrinsic-ignore"
-								data-type="text"
-								data-color="#ffffff"
-								data-rsp_ch="on"
-								data-xy="x:c;y:c;"
-								data-text="w:normal;a:center;"
-								data-dim="w:100%;h:100%;"
-								data-vbility="f,f,f,f"
-								data-basealign="slide"
-								data-frame_999="o:0;st:w;"
-								style="z-index:7;font-family:'Roboto';"
-							><iframe src="https://fast.wistia.net/embed/iframe/7w5cn382g5?videoFoam=true" title="Black Friday" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen msallowfullscreen width="1920" height="720"></iframe><br />
- 
-							</rs-layer><!--
-
 							--><rs-layer
 								id="slider-2-slide-3-layer-25" 
 								data-type="text"
@@ -116,9 +82,9 @@
 				</script>
 			</rs-module-wrap>
 			<!-- END REVOLUTION SLIDER -->
-{% assign revslider_enabled = 1 %}</div><link href="https://fonts.googleapis.com/css?family=Roboto:400%7COpen+Sans:400" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
+{% assign revslider_enabled = 1 %}</div><link href="https://fonts.googleapis.com/css?family=Open+Sans:400%7CRoboto:400" rel="stylesheet" property="stylesheet" media="all" type="text/css" >
 
-<style type="text/css" id="rs-plugin-settings-inline-css">		.rev_slider ul.tp-revslider-mainul{width:100% !important}.is-wistia iframe{visibility:hidden;  opacity:0;  transition:all 0.3s ease-out !important; transition-property:visibility,opacity !important}.is-wistia.wistia-ready iframe{visibility:visible; opacity:1}
+<style type="text/css" id="rs-plugin-settings-inline-css">		.rev_slider ul.tp-revslider-mainul{width:100% !important}
 		#20_wrapper rs-loader.spinner2{background-color:#FFFFFF !important}</style><script type="text/javascript" id="rs-initialisation-scripts">
 		if(typeof revQuery !== "undefined"){
 
@@ -172,59 +138,6 @@
 						allowHTML5AutoPlayOnAndroid:true
 					},
 			});
-							var api = revapi2;
- 
-/* no need to edit below */
-var touch = 'ontouchend' in document;
- 
-jQuery('.rev_slider').find('iframe').each(function() {
- 
-    var $this = jQuery(this),
-        src = $this.attr('src');
- 
-    if(src.search('wistia') !== -1) {
- 
-        $this = $this.closest('.tp-caption');
-        $this.data('wistia-layer', $this.html()).empty().addClass('is-wistia');
- 
-    }
- 
-});
- 
-api.on('revolution.slide.onafterswap', function (e, data) {
- 
-    data.currentslide.find('.is-wistia').each(onLayers);
- 
-}).on('revolution.slide.onbeforeswap', function(e, data) {
- 
-    var $this = data.currentslide.find('.is-wistia').empty().removeClass('wistia-ready');
-    clearTimeout($this.data('wistia-timer'));    
- 
-});
- 
-function onLayers() {
- 
-    var $this = jQuery(this),
-        frame = jQuery($this.data('wistia-layer'));
- 
-    if(!touch) {
-        frame.one('load', onLoaded).appendTo($this);
-    }
-    else {
-        frame.appendTo($this);
-        onLoaded.call(frame[0]);
-    }  
- 
-}
- 
-function onLoaded() {
- 
-    api.revredraw();
- 
-    var $this = jQuery(this).closest('.is-wistia');
-    $this.data('wistia-timer', setTimeout(function() {$this.addClass('wistia-ready');}, 500));
- 
-} 
 			
 		}} 
 
