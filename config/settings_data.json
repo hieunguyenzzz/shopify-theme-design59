@@ -2160,9 +2160,15 @@
         "type": "rev_great-ideas",
         "settings": {
         }
+      },
+      "rev_UK-Black-Friday-22": {
+        "type": "rev_UK-Black-Friday-22",
+        "settings": {
+        }
       }
     },
     "content_for_index": [
+      "rev_UK-Black-Friday-22",
       "b1f53343-f02b-4e5f-8933-a3b97eb2969c",
       "product-three-section",
       "162159895992baa653",
